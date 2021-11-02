@@ -29,6 +29,7 @@ import os
         python3
         module python validators
         module python mariadb
+        pip
 
     Configuration de base :
         mysql_secure_installation
@@ -54,7 +55,7 @@ except Exception as e:
 try:
     logging.info("Mise à jour du sytème et installation des paquets...")
     os.system("apt update ; apt upgrade")
-    os.system("apt install apache2 php mariadb-server wordpress curl python3 python3-pip libmariadbclient-dev")
+    os.system("apt install apache2 php mariadb-server wordpress curl python3 python3-pip libmariadbclient-dev pip")
     os.system("pip3 install --upgrade setuptools")
     os.system("pip3 install validators")
     os.system("pip3 install mariadb")
