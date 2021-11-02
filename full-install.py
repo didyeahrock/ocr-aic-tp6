@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# toto
 # -*- coding: utf8 -*-
 """
   full-install.py
