@@ -2,30 +2,26 @@
 # -*- coding: utf8 -*-
 """
     installation-prerequis.py
-    Script effectuant les installations de paquets nécessaire à l'installation d'un serveur LAMP
-    + Wordpress
-
-    Auteur :    Pierre LEMAIRE
+    Script to install a GLPI server with a maria DB database and apache2 server
+    Author :    Didier Lemaitre
     Version :   0.1
-    Date :      2021-05-11
-
-    Testé avec Python 3.7 sous Debian 10 (Buster) stable
+    Date :      2021-11-01
+    Tested with Python 3.7 running on a Ubuntu 20.04 
 
 """
 
-#Importation des modules nécessaires
+#Import of required modules
 
 import logging
 import subprocess
 import os
 
 """
-    Paquets à installer : 
+    Paquets to be installed : 
         apache2
         php
         mariadb-server
-        curl
-        wordpress
+        curl 
         python3
         module python validators
         module python mariadb
@@ -36,11 +32,11 @@ import os
 
 """
 
-#Définitions des constantes
+#constants Définitions
 
 LOG_FILE = "./installation.log"
 
-#Configuration du fichier de log
+# Log File Configuration 
 
 try:
     logging.basicConfig(filename=LOG_FILE, format="%(asctime)s : %(levelname)s:%(message)s", 
@@ -50,20 +46,20 @@ except Exception as e:
     print("Erreur lors de la création du fichier de journalisation")
     raise e
 
-#Mise à jour du système et Installation des paquets
+# system update and paquet Installation
 
 try:
-    logging.info("Mise à jour du sytème et installation des paquets...")
+    logging.info("system update and paquet Installation...")
     os.system("apt update ; apt upgrade")
-    os.system("apt install apache2 php mariadb-server wordpress curl python3 python3-pip libmariadbclient-dev pip")
+    os.system("apt install apache2 php mariadb-server curl python3 python3-pip libmariadbclient-dev pip")
     os.system("pip3 install --upgrade setuptools")
     os.system("pip3 install validators")
     os.system("pip3 install mariadb")
     os.system("mysql_secure_installation")
-    logging.info("Mises à jour et installations réalisées avec succès")
+    logging.info("system update and paquet installations succeeded !")
     exit(0)
 except Exception as e:
-    print("Echec de l'installation des paquets")
-    logging.error("Echec de l'installation des paquets")
+    print("paquets installation failed !")
+    logging.error("paquets installation failed !")
     logging.error(e)
     raise e
