@@ -55,7 +55,7 @@ try:
     os.system("pip install --upgrade setuptools")
     os.system("pip install validators")
     os.system("pip install mariadb")
-    os.system("mysql_secure_installation")
+    os.system("mariadb_secure_installation")
     logging.info("system update and paquet installations succeeded !")
     exit(0)
 except Exception as e:
