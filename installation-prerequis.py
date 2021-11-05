@@ -57,6 +57,18 @@ try:
     os.system("pip install validators")
     os.system("pip install mariadb")
     os.system("mysql_secure_installation")
+# Installation of GLPI
+    os.system("cd /tmp")
+    os.system("wget https://github.com/glpi-project/glpi/releases/download/9.5.6/glpi-9.5.6.tgz")
+    os.system("tar -zxvf glpi-9.5.6.tgz ")
+# Moving /tmp/glpi to the root folder of apache2 
+    os.system("sudo mv glpi /var/www/html/")
+# make www-data owner of GLPI folder
+    os.system("sudo chown -R www-data /var/www/html/glpi")
+# activation of the GLPI configuration
+    os.system("sudo a2enconf glpi")
+# reload apache
+    os.system("sudo service apache2 reload")
     logging.info("system update and paquet installations succeeded !")
     exit(0)
 except Exception as e:
