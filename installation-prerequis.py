@@ -70,7 +70,7 @@ try:
     os.system("sudo cp -v apache2.conf /etc/apache2/apache2.conf")
     os.system("sudo cp -v glpi.conf /etc/apache2/conf-available/")
 # Apache reload
-sudo systemctl reload apache2
+    os.system("sudo systemctl reload apache2")
 # activation of the GLPI configuration
     os.system("sudo a2enconf glpi")
 # reload apache
