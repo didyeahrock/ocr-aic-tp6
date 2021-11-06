@@ -65,6 +65,12 @@ try:
     os.system("sudo mv glpi /var/www/html/")
 # make www-data owner of GLPI folder
     os.system("sudo chown -R www-data /var/www/html/glpi")
+# setting apache2 fot GLPI
+    os.system("sudo cp -v /etc/apache2/apache2.conf /etc/apache2/apache2.conf.default")
+    os.system("sudo cp -v apache2.conf /etc/apache2/apache2.conf")
+    os.system("sudo cp -v glpi.conf /etc/apache2/conf-available/")
+# Apache reload
+sudo systemctl reload apache2
 # activation of the GLPI configuration
     os.system("sudo a2enconf glpi")
 # reload apache
