@@ -74,7 +74,7 @@ try:
 # activation of the GLPI configuration
     os.system("sudo a2enconf glpi")
 # reload apache
-    os.system("sudo service apache2 reload")
+    os.system("sudo systemctl reload apache2")
     logging.info("system update and paquet installations succeeded !")
     exit(0)
 except Exception as e:
