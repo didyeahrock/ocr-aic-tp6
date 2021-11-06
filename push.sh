@@ -1,4 +1,4 @@
 #!/bin/bash
-git add push.sh
-git commit -m "Last Commit"
+# git add installation-prerequis.py
+git commit -am  $1
 git push -u origin main
