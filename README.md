@@ -1,5 +1,5 @@
 # ocr-aic-tp6
-**Auteur 	:** 	Didier Lemaitre
+**Auteur 	:** 	Didier Lemaitre abruti
 
 **Version	:**	1.0
 
