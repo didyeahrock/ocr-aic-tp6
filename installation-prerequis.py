@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+ #!/usr/bin/python3
 # -*- coding: utf8 -*-
 """
     installation-prerequis.py
@@ -66,7 +66,7 @@ try:
     os.system("wget https://github.com/glpi-project/glpi/releases/download/9.5.6/glpi-9.5.6.tgz")
     os.system("tar -zxvf glpi-9.5.6.tgz ")
 # Moving /tmp/glpi to the root folder of apache2 
-    os.system("sudo mv glpi /usr/share/glpi")
+    os.system("sudo mv glpi /usr/share/")
 # make www-data owner of GLPI folder
     os.system("sudo chown -R www-data /usr/share/glpi")
 # setting apache2 for GLPI
@@ -78,7 +78,7 @@ try:
 # activation of the GLPI configuration
     os.system("a2enconf glpi")
 # reload apache
-    os.system("systemctl reload apache2")
+    os.system("sudo systemctl reload apache2")
     logging.info("system update and paquet installations succeeded !")
     exit(0)
 except Exception as e:
