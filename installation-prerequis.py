@@ -66,12 +66,12 @@ try:
     os.system("wget https://github.com/glpi-project/glpi/releases/download/9.5.6/glpi-9.5.6.tgz")
     os.system("tar -zxvf glpi-9.5.6.tgz ")
 # Moving /tmp/glpi to the root folder of apache2 
-    os.system("mv glpi /var/www/html/glpi")
+    os.system("mv glpi /usr/share/glpi")
 # make www-data owner of GLPI folder
-    os.system("chown -R www-data /var/www/html/glpi")
+    os.system("chown -R www-data /usr/share/glpi")
 # setting apache2 fot GLPI
     os.system("cp -v /etc/apache2/apache2.conf /etc/apache2/apache2.conf.default")
-    os.system("cp -v apache2.conf /etc/apache2/apache2.conf")
+    os.system("cp -v apache2.conf /etc/apache2/")
     os.system("cp -v glpi.conf /etc/apache2/conf-available/")
 # Apache reload
     os.system("systemctl reload apache2")
