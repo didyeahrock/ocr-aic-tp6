@@ -53,6 +53,10 @@ try:
     os.system("apt update ; apt upgrade")
     os.system("dpkg --configure -a")
     os.system("apt install -y apache2 php mariadb-server curl python3 python3-pip libmariadbclient-dev pip")
+    os.system("apt install -y php-json php-gd php-curl php-mbstring php-cas php-xml php-cli php-imap php-ldap php-xmlrpc php-apcu")
+    os.system("apt-get install -y php7.4-intl")
+    os.system("apt-get install -y php7.4-bz2")
+    os.system("apt-get install -y php7.4-zip")
     os.system("pip install upgrade setuptools")
     os.system("pip install validators")
     os.system("pip install mariadb")
@@ -62,19 +66,19 @@ try:
     os.system("wget https://github.com/glpi-project/glpi/releases/download/9.5.6/glpi-9.5.6.tgz")
     os.system("tar -zxvf glpi-9.5.6.tgz ")
 # Moving /tmp/glpi to the root folder of apache2 
-    os.system("sudo mv glpi /var/www/html/glpi")
+    os.system("mv glpi /var/www/html/glpi")
 # make www-data owner of GLPI folder
-    os.system("sudo chown -R www-data /var/www/html/glpi")
+    os.system("chown -R www-data /var/www/html/glpi")
 # setting apache2 fot GLPI
-    os.system("sudo cp -v /etc/apache2/apache2.conf /etc/apache2/apache2.conf.default")
-    os.system("sudo cp -v apache2.conf /etc/apache2/apache2.conf")
-    os.system("sudo cp -v glpi.conf /etc/apache2/conf-available/")
+    os.system("cp -v /etc/apache2/apache2.conf /etc/apache2/apache2.conf.default")
+    os.system("cp -v apache2.conf /etc/apache2/apache2.conf")
+    os.system("cp -v glpi.conf /etc/apache2/conf-available/")
 # Apache reload
-    os.system("sudo systemctl reload apache2")
+    os.system("systemctl reload apache2")
 # activation of the GLPI configuration
-    os.system("sudo a2enconf glpi")
+    os.system("a2enconf glpi")
 # reload apache
-    os.system("sudo systemctl reload apache2")
+    os.system("systemctl reload apache2")
     logging.info("system update and paquet installations succeeded !")
     exit(0)
 except Exception as e:
