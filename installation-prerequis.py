@@ -50,17 +50,17 @@ except Exception as e:
 
 try:
     logging.info("system update and paquet Installation...")
-    os.system("apt update ; apt upgrade")
-    os.system("dpkg --configure -a")
-    os.system("apt install -y apache2 php mariadb-server curl python3 python3-pip libmariadbclient-dev pip")
-    os.system("apt install -y php-mysql php-json php-gd php-curl php-mbstring php-cas php-xml php-cli php-imap php-ldap php-xmlrpc php-apcu")
-    os.system("apt-get install -y php7.4-intl")
-    os.system("apt-get install -y php7.4-bz2")
-    os.system("apt-get install -y php7.4-zip")
-    os.system("pip install upgrade setuptools")
-    os.system("pip install validators")
-    os.system("pip install mariadb")
-    os.system("mysql_secure_installation")
+    os.system("sudo apt update ; apt upgrade")
+    os.system("sudo dpkg --configure -a")
+    os.system("sudo apt install -y apache2 php mariadb-server curl python3 python3-pip libmariadbclient-dev pip")
+    os.system("sudo apt install -y php-mysql php-json php-gd php-curl php-mbstring php-cas php-xml php-cli php-imap php-ldap php-xmlrpc php-apcu")
+    os.system("sudo apt-get install -y php7.4-intl")
+    os.system("sudo apt-get install -y php7.4-bz2")
+    os.system("sudo apt-get install -y php7.4-zip")
+    os.system("sudo pip install upgrade setuptools")
+    os.system("sudo pip install validators")
+    os.system("sudo pip install mariadb")
+    os.system("sudo mysql_secure_installation")
 # Installation of GLPI
     os.system("cd /tmp")
     os.system("wget https://github.com/glpi-project/glpi/releases/download/9.5.6/glpi-9.5.6.tgz")
@@ -76,7 +76,7 @@ try:
 # Apache reload
     os.system("sudo systemctl reload apache2")
 # activation of the GLPI configuration
-    os.system("a2enconf glpi")
+    os.system("sudo a2enconf glpi")
 # reload apache
     os.system("sudo systemctl reload apache2")
     logging.info("system update and paquet installations succeeded !")
