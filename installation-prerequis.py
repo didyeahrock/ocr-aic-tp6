@@ -72,11 +72,12 @@ try:
 # setting apache2 for GLPI
     os.system("sudo cp -v /etc/apache2/apache2.conf /etc/apache2/apache2.conf.default")
     os.system("sudo cp -v apache2.conf /etc/apache2/")
-    os.system("sudo cp -v glpi.conf /etc/apache2/conf-available/")
+    os.system("sudo cp -v glpi.net.conf /etc/apache2/conf-available/")
+    os.system("sudo cp hosts /etc/")
 # Apache reload
-    os.system("sudo systemctl reload apache2")
+#    os.system("sudo systemctl reload apache2")
 # activation of the GLPI configuration
-    os.system("sudo a2enconf glpi")
+    os.system("sudo a2ensite glpi.net.conf")
 # reload apache
     os.system("sudo systemctl reload apache2")
     logging.info("system update and paquet installations succeeded !")
