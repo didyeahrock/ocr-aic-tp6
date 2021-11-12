@@ -72,7 +72,7 @@ try:
 # setting apache2 for GLPI
     os.system("sudo cp -v /etc/apache2/apache2.conf /etc/apache2/apache2.conf.default")
     os.system("sudo cp -v apache2.conf /etc/apache2/")
-    os.system("sudo cp -v glpi.net.conf /etc/apache2/conf-available/")
+    os.system("sudo cp -v glpi.net.conf /etc/apache2/sites-available/")
     os.system("sudo cp hosts /etc/")
 # Apache reload
 #    os.system("sudo systemctl reload apache2")
