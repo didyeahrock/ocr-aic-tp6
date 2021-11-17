@@ -216,7 +216,7 @@ try:
             "\t<FilesMatch \"\.(cgi|shtml|phtml|php)$\">\n",
             "\t\tSSLOptions +StdEnvVars\n",
             "\t</FilesMatch>\n",
-            "\t<Directory /usr/share/glpi\n",
+            "\t<Directory /usr/share/glpi>\n",
             "\t\tOptions FollowSymLinks\n",
             "\t\tAllowOverride Limit Options FileInfo\n",
             "\t\tDirectoryIndex index.php\n",
