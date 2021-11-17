@@ -2,13 +2,13 @@
 # -*- coding: utf8 -*-
 """
   full-install.py
-  Script principal rassemblant l'exécution des scripts suivants : 
+  Main Script  
     - installation-prerequis.py
     - configuration-https.py
-    - configuration-wordpress.py
+    - configuration-glpi.py
 """
 
-#Importation des modules nécessaires
+# Import of the required modules
 
 import subprocess
 
@@ -18,7 +18,7 @@ try:
   #Lancement du 2e script : configuration-https.py
   subprocess.run(["python3","configuration-https.py"])
   #Lancement du 3e script : configuration-wordpress.py
-  subprocess.run(["python3","configuration-wordpress.py"])
+  subprocess.run(["python3","configuration-glpi.py"])
   
 except Exception as e:
   raise e
