@@ -3,11 +3,9 @@
 """
     configuration-glpi.py
     Script to  setup GLPI
-
     Author  :   Didier Lemaitre
     Version :   0.1
     Date    :   17/11/2021
-
     Tested with Python 3.7 under Ubuntu 20.04
 """
 # Import of requiered modules
@@ -28,14 +26,13 @@ import mariadb
         - setup
 
 """
-# Définition des constantes et variables
-
+# Définition of constants and variables
 LOG_FILE = "./configuration-glpi.log"
 db_name = "glpi"
-dbuser = "glpi"
+db_user = "glpi"
 db_password = "password"
 db_host = "localhost"
-WP_ROOT_DIR = "/usr/share/glpi/"
+GLPI_ROOT_DIR = "/usr/share/glpi/"
 # WP_CONTENT_DIR = "/var/lib/glpi/glpi-content/"
 server_name = "glpi.local"
 server_admin = "mail@mail"
@@ -51,7 +48,7 @@ except Exception as e:
     print("Echec de la création du fichier de log, l'installation n'a pas aboutie")
     raise e
 
-# Lecture des variables
+# reading variables
 
 try:
     logging.info("Lecture des informations utilisateur")
@@ -63,7 +60,7 @@ try:
 
     logging.info("Nom de domaine saisi : {}".format(server_name))
     db_name = input("Saisir le nom de la base de données [{}]:\n".format(db_name))                          or "glpi"
-    dbuser = input("Saisir l'utilisateur de la base de données [{}]:\n".format(dbuser))                   or "glpi"
+    db_user = input("Saisir l'utilisateur de la base de données [{}]:\n".format(db_user))                   or "glpi"
     db_password = input("Saisir le mot de passe de la base de données [{}]:\n".format(db_password))         or "password"
     db_host = input("Saisir l'adresse de la base de données [{}]:\n".format(db_host))                          or "localhost"
     server_admin = input("Saisir l'adresse mail de l'administrateur [{}]:\n".format(server_admin))          or "mail@mail"
@@ -100,7 +97,7 @@ except Exception as e:
     logging.error(e)
     raise e
 
-# deactivate tge default apache site ans actiovation of the glpi site
+# deactivate the default apache site ans activation of the glpi site
 
 try:
     os.system("a2dissite 000-default")
@@ -115,7 +112,7 @@ except Exception as e:
 
 # creation of the database onto MariaDB
 
-# define a fonctiun that check if if a database exist in mariadb
+# define a fonctiun that check if a database exist in MariaDB
 def existe_base(nom_base, identifiants):
     try:
         with mariadb.connect(host = identifiants["host"],
@@ -133,27 +130,27 @@ def existe_base(nom_base, identifiants):
     except Exception as e:
         raise e
 
-# define a fonction that create and  crée/remplace une base de donnée dans mariadb
+# define a fonction that create or replace a database in MariaDB
 def creation_base(dico_base):
     try:
         with mariadb.connect(host = "localhost",
                 user = "root",
                 passwd = "P@ssw0rd") as client_db:
-            sql_create_cmd = "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER ON {}.* TO {}@{} IDENTIFIED BY '{}'".format(dico_base["db_name"], dico_base["dbuser"], dico_base["db_host"], dico_base["db_password"])
+            sql_create_cmd = "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER ON {}.* TO {}@{} IDENTIFIED BY '{}'".format(dico_base["db_name"], dico_base["db_user"], dico_base["db_host"], dico_base["db_password"])
 
             curseur_db = client_db.cursor()
             curseur_db.execute("DROP DATABASE IF EXISTS {}".format(dico_base["db_name"]))
             curseur_db.execute("CREATE DATABASE {}".format(dico_base["db_name"]))
             curseur_db.execute(sql_create_cmd)
             curseur_db.execute("FLUSH PRIVILEGES")
-    
+
     except Exception as e:
         logging.error("Echec de la création de la base de données SQL dans MariaDB")
         raise e
 
-#Création de la base de données SQL
+# creation of the SQL database
 try:
-    sql_identifiants = {"db_name": db_name, "dbuser": dbuser, "db_host": db_host, "db_password": db_password}
+    sql_identifiants = {"db_name": db_name, "db_user": db_user, "db_host": db_host, "db_password": db_password}
 
     client_db = mariadb.connect(host = "localhost",
                                 user = "root",
@@ -163,8 +160,7 @@ try:
     curseur_db.execute("SHOW DATABASES")
 
     if existe_base(db_name, MARIADB_ID):
-        print("La base {} existe déjà, souhaitez-vous continuer quand même et écraser la base existante ? [O/Y]/n".format(
-            db_name))
+        print("La base {} existe déjà, souhaitez-vous continuer quand même et écraser la base existante ? [O/Y]/n".format(db_name))
         choix_erreur_db = input("") or "O"
         print(choix_erreur_db) 
         if choix_erreur_db == "O" or choix_erreur_db == "Y":
@@ -177,16 +173,14 @@ try:
             print("Echec de création de la base, la base existe déjà.")
             logging.error("Echec de la création de la base SQL, la base existe déjà.")
             exit(os.EX_SOFTWARE)
-
     else:
         creation_base(sql_identifiants)
-
 except Exception as e:
     logging.error("Echec de la création de la base de donnée SQL dans MariaDB")
     logging.error(e)
     raise e
 
-#Création des certificats ssl
+# Création  of SSL certificates
 try:
     creation_cert = "openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/{}-selfsigned.key -out /etc/ssl/certs/{}-selfsigned.crt".format(server_name, server_name)
     creation_dh_group = "openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048"
@@ -199,9 +193,9 @@ except Exception as e:
     logging.error("Echec de la création des certificats")
     logging.error(e)
     raise e
-#Configuration d'Apache pour HTTPS
+# Apache configuration for HTTPS
 try:
-    #Représentation du contenu du fichier sous forme de liste
+    # Représent file content as a python list
     apache_https_conf = [
             "<IfModule mod_ssl.c>\n",
             "<VirtualHost *:443>\n",
