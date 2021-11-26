@@ -143,7 +143,7 @@ def creation_base(dico_base):
             curseur_db.execute("CREATE DATABASE {}".format(dico_base["db_name"]))
             curseur_db.execute(sql_create_cmd)
             curseur_db.execute("FLUSH PRIVILEGES")
-            glpi_console = "/usr/share/glpi/bin/console db:install --db-host={} --db-name={} --db-user={} --db-password='{}' --force --no-interaction".format( dico_base["db_host"],dico_base["db_name"], dico_base["db_user"], dico_base["db_password"])
+            glpi_console = "/usr/share/glpi/bin/console db:install --db-host={} --db-name={} --db-user={} --db-password='{}' --force --no-interaction --reconfigure".format( dico_base["db_host"],dico_base["db_name"], dico_base["db_user"], dico_base["db_password"])
             os.system(glpi_console)
 
     except Exception as e:
