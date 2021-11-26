@@ -234,7 +234,7 @@ try:
     os.system("a2enconf ssl-params")
     os.system("apache2ctl configtest")
     os.system("systemctl restart apache2.service")
-    os.system("php /usr/share/glpi/bin/console db:install --db-host=127.0.0.1 --db-name=glpi --db-user=glpi --db-password=glpi --force --no-interaction --reconfigure")
+#    os.system("php /usr/share/glpi/bin/console db:install --db-host=127.0.0.1 --db-name=glpi --db-user=glpi --db-password=glpi --force --no-interaction --reconfigure")
 
 except Exception as e:
     logging.error("Echec de la configuration HTTPS d'Apache")
