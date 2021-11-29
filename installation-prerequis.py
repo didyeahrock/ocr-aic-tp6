@@ -58,8 +58,9 @@ try:
     os.system("sudo apt-get install -y php7.4-intl")
     os.system("sudo apt-get install -y php7.4-bz2")
     os.system("sudo apt-get install -y php7.4-zip")
+
 """
-#    os.system("sudo pip install upgrade setuptools validators mariadb")
+    os.system("sudo pip install upgrade setuptools")
     os.system("sudo pip install validators")
     os.system("sudo pip install mariadb")
     os.system("sudo mysql_secure_installation")
