@@ -52,6 +52,7 @@ try:
     os.system("sudo apt update ; apt upgrade")
     os.system("sudo dpkg --configure -a")
     os.system("sudo apt install -y apache2 php mariadb-server curl python3 python3-pip libmariadbclient-dev pip php-mysql php-json php-gd php-curl php-mbstring php-cas php-xml php-cli php-imap php-ldap php-xmlrpc php-apcu php7.4-intl php7.4-bz2 php7.4-zip")
+
 """
     os.system("sudo apt install -y apache2 php mariadb-server curl python3 python3-pip libmariadbclient-dev pip")
     os.system("sudo apt install -y php-mysql php-json php-gd php-curl php-mbstring php-cas php-xml php-cli php-imap php-ldap php-xmlrpc php-apcu")
