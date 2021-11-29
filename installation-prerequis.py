@@ -70,16 +70,16 @@ try:
 # make www-data owner of GLPI folder
     os.system("sudo chown -R www-data /usr/share/glpi")
 # setting apache2 for GLPI
-    os.system("sudo cp -v /etc/apache2/apache2.conf /etc/apache2/apache2.conf.default")
-    os.system("sudo cp -v apache2.conf /etc/apache2/")
-    os.system("sudo cp -v glpi.net.conf /etc/apache2/sites-available/")
-    os.system("sudo cp hosts /etc/")
+#    os.system("sudo cp -v /etc/apache2/apache2.conf /etc/apache2/apache2.conf.default")
+#    os.system("sudo cp -v apache2.conf /etc/apache2/")
+#    os.system("sudo cp -v glpi.net.conf /etc/apache2/sites-available/")
+#   os.system("sudo cp hosts /etc/")
 # Apache reload
 #    os.system("sudo systemctl reload apache2")
 # activation of the GLPI configuration
-    os.system("sudo a2ensite glpi.net.conf")
+#    os.system("sudo a2ensite glpi.net.conf")
 # reload apache
-    os.system("sudo systemctl reload apache2")
+#    os.system("sudo systemctl reload apache2")
     logging.info("system update and paquet installations succeeded !")
     exit(0)
 except Exception as e:
